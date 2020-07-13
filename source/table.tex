@@ -1,0 +1,27 @@
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{l p{5.5cm} l l l l l}
+\hline 
+ Parameters & Definition & Baseline values & Range & Means value & (estimated)Std & Source \\
+\hline 
+ $\displaystyle c_{0}$ & Tỷ lệ tiếp xúc ban đầu & $\displaystyle 31$ & $\displaystyle ( 0,50]$ & $\displaystyle 34.037$ & $\displaystyle 0.389$ & $\displaystyle MCMC$ \\
+$\displaystyle c_{u}$ & Tỷ lệ tiếp xúc thấp nhất khi đã áp dụng các biện pháp giãn cách xã hội & $\displaystyle 1$ & $\displaystyle ( 0,50]$ & $\displaystyle 0.933$ & $\displaystyle 0.0037$ & $\displaystyle MCMC$ \\
+$\displaystyle k$ & Tỷ lệ giảm của tỷ lệ tiếp xúc theo thời gian & $\displaystyle 0.1$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.144$ & $\displaystyle 0.0035$ & $\displaystyle MCMC$ \\
+$\displaystyle \beta $ & Xác suất lan truyền của dịch bệnh & $\displaystyle 0.095$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.111$ & $\displaystyle 0.0015$ & $\displaystyle MCMC$ \\
+$\displaystyle q$ & Tỷ lệ cách ly những trường hợp bị phơi nhiễm & $\displaystyle 0.4$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.415$ & $\displaystyle 0.016$ & $\displaystyle MCMC$ \\
+$\displaystyle \sigma $ & Tỷ lệ chuyển từ trạng thái $E$ sang $I$ & $\displaystyle 1/7$ & $\displaystyle [ 0,1]$ & $\displaystyle 1/7$ & $\displaystyle \_$ & \cite{ncovid} \\
+$\displaystyle \lambda $ & Tỷ lệ chuyển từ $S_q$ sang $S$ (được thả từ cách ly) & $\displaystyle 1/14$ & $\displaystyle [ 0,1]$ & $\displaystyle 1/14$ & $\displaystyle \_$ & \cite{ncovid} \\
+$\displaystyle \delta _{I}$ & Tỷ lệ chuyển từ $I$ sang $H$ & $\displaystyle 0.1$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.304$ & $\displaystyle 0.001$ & $\displaystyle MCMC$ \\
+$\displaystyle \delta _{q}$ & Tỷ lệ chuyển từ $E_q$ sang $H$ & $\displaystyle 0.42$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.413$ & $\displaystyle 0.0116$ & $\displaystyle MCMC$ \\
+$\displaystyle \gamma _{I}$ & Tỷ lệ chuyển từ $I$ sang $R$ (tỷ lệ những trường hợp có khả năng tự hồi phục) & $\displaystyle 0.008$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.0085$ & $\displaystyle 0.0001$ & $\displaystyle MCMC$ \\
+$\displaystyle \gamma _{H}$ & Tỷ lệ chuyển từ $H$ sang $R$ (tỷ lệ hồi phục sau khi được chăm sóc y tế) & $\displaystyle 0.017$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.018$ & $\displaystyle 0.0003$ & $\displaystyle MCMC$ \\
+$\displaystyle \alpha $ & Tỷ lệ chết & $\displaystyle 0.0027$ & $\displaystyle [ 0,1]$ & $\displaystyle 0.0027$ & $\displaystyle 0.0001$ & $\displaystyle MCMC$ \\
+\hline 
+ $\displaystyle N$ & Toàn bộ dân số (xấp xỉ S) & $\displaystyle \_$ & $\displaystyle \_$ & $\displaystyle 1.4\times 14^{10}$ & $\displaystyle \_$ & $\displaystyle Data$ \\
+$\displaystyle E( 0)$ & Các trường hợp phơi nhiễm ban đầu & $\displaystyle 105$ & $\displaystyle [ 1,200]$ & $\displaystyle 52$ & $\displaystyle 0.64$ & $\displaystyle MCMC$ \\
+$\displaystyle I( 0)$ & Các trường hợp nhiễm bệnh ban đầu & $\displaystyle 54$ & $\displaystyle [ 1,100]$ & $\displaystyle 31$ & $\displaystyle 0.346$ & $\displaystyle MCMC$ \\
+$\displaystyle S_{q}( 0)$ & Các trường hợp không bị phơi nhiễm được cách ly ban đầu & $\displaystyle \_$ & $\displaystyle \_$ & $\displaystyle 734$ & $\displaystyle \_$ & $\displaystyle Data$ \\
+$\displaystyle E_{q}( 0)$ & Các trường hợp bị phơi nhiễm được cách ly ban đầu & $\displaystyle 2$ & $\displaystyle [ 0,100]$ & $\displaystyle 5$ & $\displaystyle 0.24$ & $\displaystyle MCMC$ \\
+$\displaystyle H( 0)$ & Các trường hợp nhiễm bệnh được chăm sóc y tế ban đầu  & $\displaystyle \_$ & $\displaystyle \_$ & $\displaystyle 41$ & $\displaystyle \_$ & $\displaystyle Data$ \\
+$\displaystyle R( 0)$ & Các trường hợp hồi phục ban đầu & $\displaystyle \_$ & $\displaystyle \_$ & $\displaystyle 6$ & $\displaystyle \_$ & $\displaystyle Data$ \\
+\hline
+\end{tabular}

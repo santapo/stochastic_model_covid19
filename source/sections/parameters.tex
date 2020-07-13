@@ -1,0 +1,26 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+Một cách tổng quát, ta có thể sử dụng ước lượng hợp lý cực đại để ược lượng các tham số chưa biết của một mô hình ngẫu nhiên nào đó \cite{seir}. Bởi vì các biến ngẫu nhiên $B_{ij}$ độc lập với nhau, hàm hợp lý có thể được biểu diễn như sau:
+\begin{align*}
+    L(B_{11}(t),B_{12}(t),B_{21}(t),B_{31}(t),B_{32}(t),B_{33}(t),B_{41}(t),B_{51}(t),B_{61}(t),B_{62}(t)|\Theta) = \prod_{t=0}^{T_n} g_{ij}(B_{ij}(t)|.)
+\end{align*}
+trong đó $g_{ij}$ là hàm mộ độ của phân phối nhị thức $B_{ij}(t)$. Ta có thể sử dụng ước lượng hợp lý cực đại trong trường hợp đã biết số lượng của các nhóm theo thời gian. Tuy nhiên, trong mô hình này, ta không xác định được các trường hợp bị nhiễm bệnh như $E(t)$ và $I(t)$. Theo dữ liệu thu thập được, ta đã biết được $B_{41},B_{61},B_{62}$ và số các trường hợp nhiễm bệnh mới là $B_{51}+B_{31}$ theo thời gian. Còn $B_{11},B_{12},B_{21},B_{32},B_{33}$ là khó để xác định. Vì vậy ta không thể sử dụng ước lượng hợp lý cực đại để ước lượng tham số của mô hình trong trường hợp này. Thay vào đó, ta sẽ sử dụng thuật toán Metropolis-Hastings (MH) để ước lượng tham số của mô hình \cite{mcmc1,mcmc2}.
+
+Ngoài ra, có các tham số đã biết trước như $\sigma = 1/7$ và $\lambda = 1/14$ do mỗi người đều phải cách ly $14$ ngày và thời gian ủ bệnh của virus là khoảng $7$ ngày \cite{ncovid,WHO}. Từ dữ liệu thu thập được, ta biết được $H_0=41$, $R_0=6$, và tổng của $S_q$ và $E_q$ là 739. Ta sẽ lấy trung bình của của 10000 lần lấy mẫu sau khi đã bỏ đi 5000 mẫu ban đầu. Các tham số đã được ước lượng có thể xem ở bảng 1. Hình \ref{fig:2} và hình \ref{fig:3} cho ta thấy mô hình của ta mô phỏng khá tốt về dịch bệnh COVID-19 ở Trung Quốc.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=19cm,center]{images/fig2 (1).png}}
+    \caption{Dữ liệu về các ca nhiễm mới được xác nhận theo từng ngày và tổng số lượng các ca nhiễm được xác nhận của đại dich COVID-19 từ ngày 11 tháng 1 năm 2020 đến ngày 13 tháng 2 năm 2020. Mô phỏng được thực hiện 100 lần. Các ca nhiễm mới được xác nhận theo từng ngày được biểu diễn ở hình (a) và tổng số ca nhiễm được xác nhận theo từng ngày ở hình (b). Đường màu xanh đậm là dữ liệu thu thập được, các đường màu xanh nhạt biểu diễn các mô phỏng ngẫu nhiên}
+    \label{fig:2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=19cm,center]{images/fig3.png}}
+    \caption{Dữ liệu về các ca phục hồi và tử vong mới của đại dịch COVID-19 từ ngày 11 tháng 1 năm 2020 đến ngày 13 tháng 2 năm 2020. Mô phỏng được thực hiện 100 lần. Các ca phục hồi mới theo từng ngày được biểu diễn ở hình (a), các ca tử vong mới ở hình (b). Đường màu xanh đậm là dữ liệu thu thập được, các đường màu xanh nhạt biểu diễn các mô phỏng ngẫu nhiên}
+    \label{fig:3}
+\end{figure}
+
+\end{document}

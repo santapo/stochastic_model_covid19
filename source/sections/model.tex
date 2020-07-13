@@ -1,0 +1,66 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+Dựa vào sự phát triển và đặc điểm của dịch bệnh COVID-19, ta sẽ sử dụng mô hình SEIR để nghiên cứu sự lan truyền của dịch. Giả sử rằng $N$ là kích cỡ dân số của Trung Quốc (xấp xỉ 1,4 tỷ người). Tập dân số sẽ được chia thành các nhóm rời rạc như mẫn cảm $S(t)$, phơi nhiễm $E(t)$, nhiễm bệnh $I(t)$, điều trị $H(t)$, phục hồi $R(t)$. Các trường hợp tiếp xúc với người bệnh được tìm thấy sẽ được cách ly và theo dõi là $S_q(t)$ và $E_q(t)$. Trong đó, $S_q(t)$ là những người không bị nhiễm bệnh và sẽ được thả về sau thời gian cách ly; $E_q(t)$ là những người sẽ bị nhiễm bệnh trong thời gian cách ly. Ở đây, biến $t$ là biến thời gian rời rạc để miêu tả sự tiếp triển của dịch bệnh qua từng ngày. Bước thời gian là một ngày $h=1$. Tại một thời điểm, số lượng cá thể của mỗi nhóm sẽ phụ thuốc vào số lượng của ngày hôm trước và sự thay đổi giữa các nhóm của ngày hôm đó. Đặt $B_{ij}(t)$ là số lượng các cá thể dịch chuyển giữa các nhóm. Ta định nghĩa chi tiết như sau:
+\begin{itemize}
+    \item $B_{11}(t)$ là số người mới bị mắc bệnh đang trong thời gian ủ bệnh
+    \item $B_{12}(t)$ là số người bị cách ly do tiếp xúc với người bệnh những không bị nhiễm
+    \item $B_{21}(t)$ là số người bị mắc bệnh với các triệu chứng rõ ràng
+    \item $B_{31}(t)$ là số người được xác minh nhiễm bệnh và được đưa vào điều trị
+    \item $B_{32}(t)$ là số ca tử vong từ những người bị nhiễm bệnh (chưa qua điều trị)
+    \item $B_{33}(t)$ là số người bị bệnh nhưng có khả năng tự phục hồi
+    \item $B_{41}(t)$ là số người đã hoàn thành cách ly và được thả về
+    \item $B_{51}(t)$ là số người được đưa vào điều trị từ khu cách ly
+    \item $B_{61}(t)$ là số người phục hồi sau quá trình điều trị
+    \item $B_{61}(t)$ là số ca tử vong trong quá trình điều trị
+\end{itemize}
+Sự dịch chuyển của một người từ nhóm này sang nhóm kia được coi là một quá trình ngẫu nhiên. Khoảng thời gian một người ở trong một nhóm nhất định được coi là tuân theo phân phối mũ. Nếu ta giả sử rằng tham số của phân phối mũ là $\lambda (t)$, thì xác suất rời khỏi nhóm hiện tại trong khoảng thời gian $h$ là $1-exp(-\lambda (t)h)$. Mặt khác, số lượng dòng vào và ra của một trạng thái hay là $B_{ij}(t)$ được cho là tuân theo phân phối nhị thức $Bin(n,p)$. Trong đó $n$ bằng số lượng người trong nhóm hiện tại. Sự lan truyền của dịch bệnh được được diễn ra thông qua tiếp xúc với người bệnh. Giả sử xác suất lan truyền là $\beta$ và tỷ lệ tiếp xúc là $c(t)$ thì $\beta c(t) I(t) / N$ là tham số của phân phối mũ của xác suất các cá thể có thể bị nhiễm bệnh khi tiếp xúc với người bệnh. Giả sử $q$ là tỷ lệ những trường hợp nhiễm bệnh bị cách ly. Dựa vào những giả định trên và mô hình SEIR đã được phát triển \cite{seir}, ta có mô hình như sau:
+\begin{align*}
+    & S(t+h)=S(t)-B_{11}(t)-B_{12}(t)+B_{41}(t) \\
+    & E(t+h)=E(t)+(1-q)B_{11}(t)-B_{21}(t) \\
+    & I(t+h)=I(t)+B_{21}(t)-B_{31}(t)-B_{32}(t)-B_{33}(t) \\
+    & S_q(t+h)=S_q(t)+B_{12}(t)-B_{41}(t) \\
+    & E_q(t+h)=E_q(t)+qB_{11}(t)-B_{51}(t) \\
+    & H(t+h)=H(t)+B_{31}(t)+B_{51}(t)-B_{61}(t)-B_{62}(t) \\
+    & R(t+h)=R(t)+B_{33}(t)+B_{61}(t)
+\end{align*}
+trong đó
+\begin{align*}
+    & B_{11}(t) \sim Poi(S(t)*P_{11}(t)), \quad B_{12}(t) \sim Poi(S(t)*P_{12}(t)), \\
+    & B_{21}(t) \sim Bin(E(t),P_{21}), \quad B_{31}(t) \sim Bin(I(t),P_{31}), \\
+    & B_{32}(t) \sim Bin(I(t),P_{32}), \quad B_{33}(t) \sim Bin(I(t),P_{33}), \\
+    & B_{41}(t) \sim Bin(S_q(t),P_{41}), \quad B_{51}(t) \sim Bin(E_q(t),P_{51}), \\
+    & B_{61}(t) \sim Bin(H(t),P_{61}), \quad B_{62}(t) \sim Bin(H(t),P_{32})
+\end{align*}
+Các xác suất trong các phân phối nhị thức trên được mô tả chi tiết như sau:
+\begin{align*}
+    & P_{11}(t)=1-exp(-\beta c(t) I(t)h/N), \quad P_{12}(t)=1-exp(-c(t)q(1-\beta)I(t)h/N), \\
+    & P_{21}=1-exp(-\sigma h), \quad P_{31}=1-exp(-\delta _I h), \\
+    & P_{32}=1-exp(-\alpha h), \quad P_{33}=1-exp(-\gamma _I h), \\
+    & P_{41}=1-exp(-\lambda h), \quad P_{51}=1-exp(-\delta _q h), P_{61}=1-exp(-\gamma _H h)
+\end{align*}
+
+Lưu ý rằng số lượng người ở $S(t)$ xấp xỉ bằng tổng dân số $N$ ở Trung Quốc. Do giới hạn của phân phối nhị thức là phân phối Poisson và số lượng người ở $S(t)$ là lớn. Vì vậy mà $B_{11}(t)$ và $B_{12}(t)$ tuân theo phân phối Poisson. Tổng quát của mô hình được miêu tả bằng biểu đồ \ref{diagram}. Các tham số của mô hình được tổng kết ở bảng 1.
+\begin{figure}[H]
+\centering
+\resizebox{15cm}{!}{\input{diagram}}
+\caption{Biểu đồ dòng miêu tả sự lây nhiễm của dịch bệnh COVID-19}
+\label{diagram}
+\end{figure}
+
+Hạn chế tiếp xúc là một biện pháp phòng chống dịch bệnh hiệu quả để kiểm soát sự lây lan của dịch bệnh. Nâng cao nhận thức của cộng đồng về phòng ngừa dịch bệnh và hạn chế di chuyển hoặc đeo khẩu trang khi ở nơi công cộng. Trong mô hình này, tỷ lệ tiếp xúc $c(t)$ (tức là số lượng tiếp xúc trung bình của một người trên một đơn vị thời gian) được coi là một hàm thành phần. Nó là hằng số trước thời điểm $t^*$ hay là trước thời điểm các biện pháp giãn cách xã hội được thực hiện. Ta giả định rằng nó sẽ giảm dần từ $c_0$ đến $c_u$. Khi đó ta có hàm $c(t)$:
+\begin{align*}
+    c(t) = 
+    \begin{cases}
+    c_0  & \mbox{nếu } t \leq t^* \\
+    (c_0 -c_u)e^{-k(t-t^*)}+c_u & \mbox{nếu } t > t^*
+    \end{cases}
+\end{align*}
+Các biện pháp cách ly được áp dụng ở Trung Quốc từ ngày 23 tháng 1 năm 2020. Dữ liệu được thu thập từ ngày 11 tháng 1 năm 2020. Do đó, $t^*=12$.
+\begin{figure}[H]
+    \centering
+    \caption*{\textbf{Bảng 1:} các tham số đã được ước lượng và ban đầu của mô hình}
+    \resizebox{15cm}{!}{\input{table}}
+    \label{table:1}
+\end{figure}
+\end{document}

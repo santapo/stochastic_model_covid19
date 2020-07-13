@@ -1,0 +1,44 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+\subsection{Hệ số lây nhiễm}
+Khác với hệ số lây nhiễm cơ bản, hệ số lây nhiễm hiệu quả có thể sử dụng để tính số lượng các $F1$, tức là có tiếp xúc trực tiếp với $F0$ (những người dương tính với virus corona). Hệ số này thay đổi theo thời gian do các biện pháp phòng chống dịch bệnh được áp dụng. Ta có hệ số lây nhiễm hiệu quả như sau
+\begin{align*}
+    R_c(t)=\frac{\beta c(t) (1-q)}{\delta_I + \alpha +\gamma_I}
+\end{align*}
+Ta thấy ở đây hệ số $c(t)$ thay đổi theo thời gian kéo theo hệ số lây nhiễm hiệu quả cũng thay đổi theo. Các tham số trong công thức trên đã được ước lượng bằng phương pháp Markov Chain Monte Carlo (MCMC). Kết quả tính toán hệ số $R_c(t)$ theo thời gian được biểu diễn bằng hình \ref{fig:4}.
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[scale=0.5,center]{images/fig6.png}}
+    \caption{Hệ số lây nhiễm hiệu quả $R_c(t)$ từ ngày 11 tháng 1 đến ngày 14 tháng 2 năm 2020. Khoảng màu xám là độ lệch chuẩn của hệ số lây nhiễm hiệu quả.}
+    \label{fig:4}
+\end{figure}
+
+\subsection{Dự báo}
+Ta đã giả định rằng tỷ lệ tiếp xúc sẽ giảm dần theo thời gian nhờ việc áp dụng các biện pháp phòng ngừa dịch bệnh. Việc ước lượng các tham số của mô hình cho ta thấy tỷ lệ tiếp xúc ban đầu là $34.03$, và tỷ lệ tiếp xúc khi đã áp dụng các biện pháp giãn cách xã hội sẽ giảm dần theo thời gian xuống còn $0.93$. Điều này cho thấy rằng các biện pháp giãn cách xã hội có tác dụng phòng chống dịch bệnh rất hiệu quả. Từ các tham số đã được ước lượng và các giả định của mô hình, ta có thể mô phỏng sự lây lan của dịch bệnh trong tương lai. Trong hình \ref{fig:5} (a) và (b), các mô phỏng cho thấy sự thay đổi của các số liệu theo từng ngày trong vòng 350 ngày kể từ ngày 11 tháng 1 năm 2020. Số lượng ca nhiễm mới theo từng ngày có dấu hiệu giảm dần và tiệm cận về không trong khoảng $102-119$ ngày kể từ ngày 11 tháng 1. Cùng với đó, tổng số lượng các ca nhiễm theo từng ngày sẽ đạt đỉnh vào khoảng ngày thứ $49-52$ kể từ ngày 11 tháng 1. 
+
+\begin{figure}[H]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=19cm,center]{images/fig4.png}}
+    \caption{Kết quả dự báo các ca nhiễm mới được xác nhận theo từng ngày được biểu diễn ở hình (a) và tổng tất cả các ca nhiễm được xác nhận theo từng ngày được biểu diễn ở hình (b). Các dự báo được giả định rằng các biện pháp phòng ngừa dịch vẫn được áp dụng sau 350 ngày kể từ ngày 11 tháng 1 năm 2020.}
+    \label{fig:5}
+\end{figure}
+
+\subsection{Kiến nghị}
+Một câu hỏi được người dân và chính phủ rất quan tâm đó là việc áp dụng các biện pháp phòng ngừa dịch bệnh sẽ diễn ra trong bao lâu? Ta không thể phủ nhận rằng các biện pháp này đã ảnh hưởng rất nhiều đến cuộc sống và kinh tế của toàn xã hội. Nếu mọi người trở lại cuộc sống thường nhật, tỷ lệ tiếp xúc sẽ tăng, kéo theo đó là hệ số lây nhiễm hiệu quả cũng tăng theo. Điều đó dẫn tới nguy cơ bùng phát dịch bệnh lần thứ hai. Ta sẽ xem xét bốn trường hợp sau đây:
+\begin{enumerate}[label=\textbf{\arabic*})]
+    \item Giả sử thời điểm nới lỏng cách biện pháp cách ly là ngày 1 tháng 3 năm 2020, tức là 50 ngày sau khi dịch bệnh bùng phát. Tham số $c(t)=3$ khi $t>50$.
+    \item Giả sử thời điểm nới lỏng cách biện pháp cách ly là ngày 1 tháng 3 năm 2020, tức là 50 ngày sau khi dịch bệnh bùng phát. Tham số $c(t)=1.5$ khi $t>50$.
+    \item Giả sử thời điểm nới lỏng cách biện pháp cách ly là ngày 20 tháng 3 năm 2020, tức là 70 ngày sau khi dịch bệnh bùng phát. Tham số $c(t)=3$ khi $t>70$.
+    \item Giả sử thời điểm nới lỏng cách biện pháp cách ly là ngày 20 tháng 3 năm 2020, tức là 70 ngày sau khi dịch bệnh bùng phát. Tham số $c(t)=1.5$ khi $t>70$.
+\end{enumerate}
+Ta áp dụng mô hình đã xây dựng với các tham số đã được ước lượng trên bộ dữ liệu đã được thu thập để mô phỏng  bốn trường hợp trên. Kết quả của mô phỏng được thể hiện trong Hình \ref{fig:6}, bao gồm dự đoán tổng các ca nhiễm mới theo từng ngày và tổng các ca nhiễm đang được điều trị theo từng ngày. Từ kết quả của mô phỏng, ta thấy rằng các biện pháp phòng ngừa dịch bệnh như mỗi người cách nhau hai mét là cần thiết để phòng tránh sự bùng phát của dịch bệnh. Tức là, khi trở lại với cuộc sống thường nhật, người dẫn vẫn cần có sự tự phòng bị mới môi trường xung quanh để tránh bị nhiễm bệnh. Ta cũng thấy rằng, việc nới lỏng các biện pháp cách ly vào ngày 20 tháng 3 năm 2020 là tốt hơn với số ca nhiễm mới chỉ tăng một lượng nhỏ, nhưng sau đó sẽ giảm xuống một cách nhanh chóng. Do đó, việc kéo dài thời gian áp dụng các biện pháp cách ly sẽ làm giảm xác suất để một đợt bùng phát dịch thứ hai có thể xảy ra.
+
+\begin{figure}[ht]
+    \centering
+    \makebox[\textwidth]{\includegraphics[width=19cm,center]{images/fig5 (1).png}}
+    \caption{Kết quả dự đoán các ca nhiễm mới theo từng ngày biểu diễn ở hình (a) và tổng số ca nhiễm theo từng ngày biểu diễn ở hình (b) với 4 giả định đã đặt ra và được mô phỏng trong 350 ngày kể từ ngày 11 tháng 1 năm 2020. Kết quả được biểu diễn là trung bình của 50 lần mô phỏng}
+    \label{fig:6}
+\end{figure}
+\end{document}

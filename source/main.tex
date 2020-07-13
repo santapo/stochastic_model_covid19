@@ -1,0 +1,119 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{vietnam}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
+\graphicspath{ {images/}}
+\usepackage{subfiles}
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{enumitem}
+
+\usepackage{physics}
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{mathdots}
+\usepackage{yhmath}
+\usepackage{cancel}
+\usepackage{color}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usetikzlibrary{fadings}
+\usetikzlibrary{patterns}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes}
+
+\usepackage{systeme}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+
+\usepackage{biblatex}
+\addbibresource{citation.bib}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+
+
+\usepackage{caption}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        
+        \Huge
+        \textbf{Đại học Bách Khoa Hà Nội}
+        
+        \vspace{0.5cm}
+        \LARGE
+        Viện Toán Ứng Dụng và Tin học
+        
+        \vspace{1.5cm}
+        \includegraphics[scale=0.7]{hust.png}
+        
+        \vspace{1.5cm}
+        \LARGE
+        \textbf{Các mô hình ngẫu nhiên và Ứng dụng}
+        
+        \vspace{1cm}
+        \Large
+        Mô hình ngẫu nhiên dự báo và kiểm soát \\ dịch bệnh COVID-19 ở Trung Quốc
+        
+        \vspace{0.5cm}
+        \large
+        \begin{align*}
+        \mbox{\textbf{Sinh viên:} } & \mbox{Nguyễn Trọng Tuấn} - 20176898 \\
+                & \mbox{Trần Đình Hoàng} - 20172572 \\
+                & \mbox{Nguyễn Công Đoàn} - 20173496
+        \end{align*}
+        
+        
+        \vspace{0.5cm}
+        \large
+        \textbf{Giảng viên hướng dẫn:} TS. Nguyễn Thị Ngọc Anh
+        
+        \vspace{1cm}
+        \large
+        Hà Nội, 2020
+    \end{center}
+\end{titlepage}
+
+\tableofcontents
+\listoffigures
+\newpage
+\captionsetup[figure]{labelfont={bf},labelsep=period}
+
+\section*{Lời nói đầu}
+\subfile{sections/abstract.tex}
+
+\section{Đặt vấn đề}
+\subfile{sections/introduction.tex}
+
+\section{Mô hình}
+\subfile{sections/model.tex}
+
+\section{Dữ liệu}
+\subfile{sections/data.tex}
+
+\section{Ước lượng tham số}
+\subfile{sections/parameters.tex}
+
+\section{Dự báo và kiến nghị}
+\subfile{sections/predict.tex}
+
+\section{Bàn luận}
+\subfile{sections/discuss.tex}
+
+\printbibliography
+\end{document}
